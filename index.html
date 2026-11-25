@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brick Blair</title>
+<meta name="description" content="Brick Blair is a Brooklyn singer-songwriter. Listen on Spotify and Apple Music, and get new songs by email.">
+<meta property="og:title" content="Brick Blair">
+<meta property="og:description" content="Brooklyn singer-songwriter. Listen, and get new songs by email.">
+<meta property="og:image" content="https://brickblair.com/img/brick.jpg">
+<meta property="og:url" content="https://brickblair.com/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<style>
+/* VOICE: late, quiet, one lamp on in a dark room. Few words, lots of air.
+   IDEA: the back of a record sleeve — name, the songs, the credits, a way to hear the next one.
+   PICTURE: the lamp-lit guitar photo, bleeding off the edge, the name set over its shadow.
+   COLOUR and TYPE: room-dark ground, bone text, rust accent from the covers. Archivo, condensed for the name.
+   LAYOUT: full-bleed hero, then a sleeve grid of three singles, signup, short bio, contact. */
+:root{color-scheme:dark;--bg:#0f0d0c;--bg2:#171412;--ink:#f1e9df;--mute:#b3a89b;--rule:#2c2622;--rust:#d0532c;--rust2:#e5693f}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Archivo",system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 max(5vw,18px)}
+
+/* hero */
+.hero{position:relative;min-height:min(100svh,780px);display:grid;align-items:end;isolation:isolate;
+  background:radial-gradient(ellipse 60% 70% at 78% 40%,#1a1714 0%,var(--bg) 70%)}
+.hero .photo{position:absolute;top:0;bottom:0;right:max(0px,calc((100vw - 1400px)/2));width:min(64vw,760px);z-index:-2;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 34%),linear-gradient(0deg,transparent 0%,#000 26%);
+  -webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0%,#000 34%),linear-gradient(0deg,transparent 0%,#000 26%);mask-composite:intersect}
+.hero .photo img{width:100%;height:100%;object-fit:cover;object-position:55% 30%}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,rgba(15,13,12,.7) 0%,rgba(15,13,12,0) 55%)}
+.hero .wrap{width:100%;padding-bottom:clamp(36px,7vh,84px)}
+.name{font-stretch:68%;font-weight:850;text-transform:uppercase;line-height:.86;letter-spacing:-.01em;
+  font-size:clamp(76px,15vw,208px);margin:0}
+.name span{display:block}
+.tag{margin:18px 0 26px;color:var(--mute);font-size:18px}
+.listen{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;border-radius:999px;
+  text-decoration:none;font-weight:600;font-size:16px;border:1px solid rgba(241,233,223,.28);background:rgba(15,13,12,.45);backdrop-filter:blur(6px)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn.primary{background:var(--rust);border-color:var(--rust);color:#fff}
+.btn:hover{border-color:var(--ink)}
+.btn.primary:hover{background:var(--rust2);border-color:var(--rust2)}
+.btn:focus-visible,.field input:focus-visible,.field button:focus-visible,.song a:focus-visible{outline:2px solid var(--rust2);outline-offset:3px}
+
+/* sections */
+.band{padding:clamp(56px,8vw,112px) 0}
+h2{font-stretch:75%;font-weight:800;text-transform:uppercase;font-size:clamp(34px,4.6vw,52px);line-height:1.02;margin:0 0 28px;letter-spacing:-.005em}
+.lede{color:var(--mute);max-width:60ch;margin:-12px 0 32px}
+
+/* songs */
+.songs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,32px)}
+.song{background:var(--bg2);border:1px solid var(--rule);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+.song img{aspect-ratio:1;width:100%;height:auto;object-fit:cover}
+.song .meta{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.song h3{margin:0;font-size:21px;font-weight:700;line-height:1.2}
+.song .yr{color:var(--mute);font-size:14px;font-weight:400;margin-left:6px}
+.song p{margin:0;color:var(--mute);font-size:15px;line-height:1.5}
+.song .links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:auto;padding-top:6px}
+.song .links a{font-size:15px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--rust);padding:6px 0}
+.song .links a:hover{color:var(--rust2)}
+
+/* signup */
+.signup{background:var(--rust);color:#fff}
+.signup h2{margin-bottom:12px}
+.signup .lede{color:rgba(255,255,255,.86);margin:0 0 26px}
+.field{display:flex;gap:10px;max-width:560px;flex-wrap:wrap}
+.field input{flex:1 1 240px;min-height:52px;border-radius:999px;border:0;padding:0 22px;font:inherit;font-size:16px;color:#1a1513;background:#fff}
+.field button{min-height:52px;padding:0 26px;border-radius:999px;border:0;font:inherit;font-weight:700;font-size:16px;background:#1a1513;color:#fff;cursor:pointer}
+.field button:hover{background:#000}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.note{margin:14px 0 0;font-size:14px;color:rgba(255,255,255,.86);min-height:1.4em}
+
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,72px);align-items:start}
+.about p{margin:0 0 16px;max-width:62ch}
+.credits{border-top:1px solid var(--rule);margin-top:24px;padding-top:18px;color:var(--mute);font-size:15px}
+.credits div{display:flex;gap:12px;padding:4px 0}
+.credits dt{width:8.5em;flex:none;color:var(--ink)}
+.credits dd{margin:0}
+
+/* footer */
+footer{border-top:1px solid var(--rule);padding:32px 0 40px;color:var(--mute);font-size:15px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px}
+footer a{text-decoration:none;border-bottom:1px solid var(--rule)}
+footer a:hover{color:var(--ink);border-color:var(--ink)}
+
+@media (max-width:860px){
+  .songs{grid-template-columns:minmax(0,1fr)}
+  .song{flex-direction:row}
+  .song img{width:38%;max-width:200px;aspect-ratio:1;height:auto;align-self:flex-start}
+  .about{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:600px){
+  .hero{min-height:auto;align-items:stretch}
+  .hero{background:var(--bg)}
+  .hero .photo{position:relative;right:auto;width:100%;height:86vw;max-height:520px;
+    -webkit-mask-image:linear-gradient(0deg,transparent 0%,#000 38%);mask-image:linear-gradient(0deg,transparent 0%,#000 38%)}
+  .hero .photo img{object-position:58% 25%}
+  .hero::before{display:none}
+  .hero{display:block}
+  .hero .wrap{margin-top:-64px;position:relative}
+  .tag{font-size:17px}
+  .btn{flex:1 1 calc(50% - 10px);justify-content:center}
+  .song{flex-direction:column}
+  .song img{width:100%;max-width:none}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero .photo img{animation:settle 1.6s ease-out both}
+  @keyframes settle{from{transform:scale(1.04);filter:brightness(.7)}to{transform:none;filter:none}}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="photo"><img src="img/brick.jpg" alt="Brick Blair playing an archtop guitar in a dark room lit by one lamp" width="636" height="636"></div>
+  <div class="wrap">
+    <h1 class="name"><span>Brick</span><span>Blair</span></h1>
+    <p class="tag">Singer-songwriter. Brooklyn, New York.</p>
+    <nav class="listen" aria-label="Listen and follow">
+      <a class="btn primary" href="https://open.spotify.com/artist/53nM47TLE6Is8HlyEZO4ru">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor" opacity=".18"/><path d="M6.5 9.3c3.8-1.1 8-.8 11.2 1M7.2 12.4c3.1-.8 6.5-.5 9.2 1M7.9 15.3c2.4-.6 4.9-.3 7 .9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Spotify</a>
+      <a class="btn" href="https://music.apple.com/us/artist/brick-blair/1570843805">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18.5V6.8l10-2.3v11.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="6.8" cy="18.5" r="2.3" fill="currentColor"/><circle cx="16.8" cy="16.2" r="2.3" fill="currentColor"/></svg>
+        Apple Music</a>
+      <a class="btn" href="https://www.instagram.com/brickblair/">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.9" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+        Instagram</a>
+      <a class="btn" href="#list">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.8 7l8.2 6 8.2-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        Email list</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="band" id="songs" aria-labelledby="songs-h">
+    <div class="wrap">
+      <h2 id="songs-h">Songs</h2>
+      <div class="songs">
+        <article class="song">
+          <img src="img/two-dollar-coat.jpg" alt="Two Dollar Coat cover" width="480" height="480" loading="lazy">
+          <div class="meta">
+            <h3>Two Dollar Coat<span class="yr">2022</span></h3>
+            <p>Stripped down and recorded live: one voice, one charity-shop Epiphone, nearly thirty takes.</p>
+            <div class="links">
+              <a href="https://open.spotify.com/track/0xqbfcP4kkb3BoOeqOyNJ2">Spotify</a>
+              <a href="https://music.apple.com/us/album/two-dollar-coat/1611238389?i=1611238390">Apple Music</a>
+              <a href="https://youtu.be/6Fl8En8sthA">YouTube</a>
+            </div>
+          </div>
+        </article>
+        <article class="song">
+          <img src="img/on-the-zooms.jpg" alt="On the Zooms cover" width="480" height="480" loading="lazy">
+          <div class="meta">
+            <h3>On the Zooms<span class="yr">2021</span></h3>
+            <p>A letter to someone he was with as the pandemic closed in.</p>
+            <div class="links">
+              <a href="https://open.spotify.com/album/1Oe4D4e4wAFyAO3Yq0aVM0">Spotify</a>
+              <a href="https://music.apple.com/us/album/on-the-zooms-single/1594350093">Apple Music</a>
+              <a href="https://youtu.be/LJVhJ7JicE4">YouTube</a>
+            </div>
+          </div>
+        </article>
+        <article class="song">
+          <img src="img/your-device.jpg" alt="Your Device cover" width="480" height="480" loading="lazy">
+          <div class="meta">
+            <h3>Your Device<span class="yr">2021</span></h3>
+            <p>How the things we pay attention to end up making us.</p>
+            <div class="links">
+              <a href="https://open.spotify.com/track/5caLd4nbxAEiYID8kzFs0w">Spotify</a>
+              <a href="https://music.apple.com/us/album/your-device-single/1571174090">Apple Music</a>
+              <a href="https://soundcloud.com/brick-blair/your-device">SoundCloud</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band signup" id="list" aria-labelledby="list-h">
+    <div class="wrap">
+      <h2 id="list-h">Hear the next one first</h2>
+      <p class="lede">There's a finished album and an EP still to come out. Leave your email and you'll get each song the day it's released. Nothing else.</p>
+      <form class="field" id="signup" novalidate>
+        <label class="hp" aria-hidden="true">Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        <input type="email" name="email_address" id="email" placeholder="you@example.com" autocomplete="email" required aria-label="Email address">
+        <button type="submit">Sign up</button>
+      </form>
+      <p class="note" id="note" role="status"></p>
+    </div>
+  </section>
+
+  <section class="band" id="about" aria-labelledby="about-h">
+    <div class="wrap about">
+      <h2 id="about-h">About</h2>
+      <div>
+        <p>Brick Blair is a Brooklyn singer-songwriter. A baritone with indie folk and alt-country roots, writing songs he couldn't get out of his head, some of them for fifteen years.</p>
+        <p>He records with producer and engineer Robert Farren at RFL Studios in Williamsburg. Almost all his gear comes from charity shops and estate sales. He rebuilds it, then writes on it.</p>
+        <dl class="credits">
+          <div><dt>Produced with</dt><dd>Robert Farren, RFL Studios</dd></div>
+          <div><dt>Contact</dt><dd><a href="mailto:brick@brickblair.com">brick@brickblair.com</a></dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Brick Blair</span>
+    <span><a href="https://open.spotify.com/artist/53nM47TLE6Is8HlyEZO4ru">Spotify</a> · <a href="https://music.apple.com/us/artist/brick-blair/1570843805">Apple Music</a> · <a href="https://www.instagram.com/brickblair/">Instagram</a> · <a href="mailto:brick@brickblair.com">brick@brickblair.com</a></span>
+  </div>
+</footer>
+
+<script>
+{
+  // Set this to the Kit form id once the list exists; until then the form says so honestly.
+  const KIT_FORM_ID = '3146957';
+  const form = document.getElementById('signup');
+  const note = document.getElementById('note');
+  const email = document.getElementById('email');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (form.website.value) return; // bots fill the hidden field
+    const v = email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) { note.textContent = 'That email address doesn’t look right.'; email.focus(); return; }
+    if (!KIT_FORM_ID) { note.textContent = 'Preview only: this form gets wired to your Kit list before the site goes live.'; return; }
+    note.textContent = 'Sending…';
+    try {
+      const body = new FormData(); body.append('email_address', v);
+      const r = await fetch('https://app.kit.com/forms/' + KIT_FORM_ID + '/subscriptions', { method: 'POST', body, headers: { Accept: 'application/json' } });
+      if (!r.ok) throw new Error(r.status);
+      form.reset();
+      note.textContent = 'Almost done: check your inbox and confirm your address.';
+    } catch (err) {
+      note.textContent = 'Something went wrong. Try again, or write to brick@brickblair.com.';
+    }
+  });
+}
+</script>
+</body>
+</html>
