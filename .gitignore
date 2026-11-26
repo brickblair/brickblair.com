@@ -1,1 +1,2 @@
 _src/essays/*.orig.md
+__pycache__/
