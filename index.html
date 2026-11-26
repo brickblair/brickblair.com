@@ -68,6 +68,16 @@ h2{font-stretch:75%;font-weight:800;text-transform:uppercase;font-size:clamp(34p
 .song .links a{font-size:15px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--rust);padding:6px 0}
 .song .links a:hover{color:var(--rust2)}
 
+/* writing */
+.essays{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule);max-width:900px}
+.essays li{border-bottom:1px solid var(--rule)}
+.essays a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 24px;padding:20px 0;text-decoration:none}
+.essays h3{margin:0;font-size:22px;font-weight:700;line-height:1.25}
+.essays .yr{color:var(--mute);font-size:15px;align-self:start;padding-top:4px}
+.essays p{grid-column:1/-1;margin:0;color:var(--mute);font-size:16px;max-width:62ch}
+.essays a:hover h3{color:var(--rust2)}
+.essays a:focus-visible{outline:2px solid var(--rust2);outline-offset:3px}
+
 /* signup */
 .signup{background:var(--rust);color:#fff}
 .signup h2{margin-bottom:12px}
@@ -189,6 +199,7 @@ footer a:hover{color:var(--ink);border-color:var(--ink)}
               <a href="https://open.spotify.com/track/0xqbfcP4kkb3BoOeqOyNJ2">Spotify</a>
               <a href="https://music.apple.com/us/album/two-dollar-coat/1611238389?i=1611238390">Apple Music</a>
               <a href="https://youtu.be/6Fl8En8sthA">YouTube</a>
+              <a href="/two-dollar-coat-qa/">The story</a>
             </div>
           </div>
         </article>
@@ -201,6 +212,7 @@ footer a:hover{color:var(--ink);border-color:var(--ink)}
               <a href="https://open.spotify.com/album/1Oe4D4e4wAFyAO3Yq0aVM0">Spotify</a>
               <a href="https://music.apple.com/us/album/on-the-zooms-single/1594350093">Apple Music</a>
               <a href="https://youtu.be/LJVhJ7JicE4">YouTube</a>
+              <a href="/on-the-zooms-essay/">The story</a>
             </div>
           </div>
         </article>
@@ -217,6 +229,18 @@ footer a:hover{color:var(--ink);border-color:var(--ink)}
           </div>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section class="band" id="writing" aria-labelledby="writing-h">
+    <div class="wrap">
+      <h2 id="writing-h">Writing</h2>
+      <ul class="essays">
+        <li><a href="/what-are-we-doing-here/"><h3>What Are We Doing Here?</h3><span class="yr">2021</span><p>Why make music at all, and why tell anyone about it.</p></a></li>
+        <li><a href="/we-are-time-prisoners/"><h3>We Are Prisoners of Time</h3><span class="yr">2021</span><p>Time is a currency with no fixed exchange rate.</p></a></li>
+        <li><a href="/on-the-zooms-essay/"><h3>If You Stop Using Zoom, Do You Cease to Exist?</h3><span class="yr">2021</span><p>The story behind On the Zooms, with the lyrics in English and Portuguese.</p></a></li>
+        <li><a href="/two-dollar-coat-qa/"><h3>Two Dollar Coat: Answers and Questions</h3><span class="yr">2022</span><p>What the song is about, free coats, and nearly thirty takes.</p></a></li>
+      </ul>
     </div>
   </section>
 
