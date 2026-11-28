@@ -28,6 +28,36 @@ ESSAYS = [
                  ("YouTube", "https://youtu.be/6Fl8En8sthA")]),
 ]
 
+LYRICS_SRC = ROOT / "_src" / "lyrics"
+
+# Lyrics pages. "slug" is the page address; Your Device keeps its old WordPress address.
+SONGS = [
+    dict(src="the-things-i-know", slug="the-things-i-know-lyrics", title="The Things I Know", year="2025",
+         credit="Written by Brick Blair",
+         listen=[("Spotify", "https://open.spotify.com/track/5NUxcUqPBld3zrTpJ9a1L8"),
+                 ("Apple Music", "https://music.apple.com/us/artist/brick-blair/1570843805")]),
+    dict(src="white-horse", slug="white-horse-lyrics", title="White Horse", year="2023",
+         credit="Written by Brick Blair",
+         listen=[("Spotify", "https://open.spotify.com/track/5kckr3vwyTCFsCz4fGupcM"),
+                 ("Apple Music", "https://music.apple.com/us/artist/brick-blair/1570843805")]),
+    dict(src="anthem-in-our-hearts", slug="anthem-in-our-hearts-lyrics", title="Anthem In Our Hearts", year="2022",
+         credit='Written by Brick Blair, <a href="https://www.instagram.com/mayalove1/">Maya Coppola</a> and <a href="https://www.midasroyal.com/">Midas Royal</a>',
+         listen=[("midasroyal.com", "https://www.midasroyal.com/portfolio-items/anthem-in-our-hearts/")]),
+    dict(src="ball-of-gold", slug="ball-of-gold-lyrics", title="Ball of Gold", year="2022",
+         credit="Written by Brick Blair",
+         listen=[("YouTube", "https://youtu.be/inNTdfsNJPg")]),
+    dict(src="two-dollar-coat", slug="two-dollar-coat-lyrics", title="Two Dollar Coat", year="2022",
+         credit="Written by Brick Blair",
+         listen=[("Spotify", "https://open.spotify.com/track/0xqbfcP4kkb3BoOeqOyNJ2"),
+                 ("Apple Music", "https://music.apple.com/us/album/two-dollar-coat/1611238389?i=1611238390"),
+                 ("YouTube", "https://youtu.be/6Fl8En8sthA")]),
+    dict(src="your-device", slug="your-device-song-lyrics", title="Your Device", year="2021",
+         credit="Written by Brick Blair",
+         listen=[("Spotify", "https://open.spotify.com/track/5caLd4nbxAEiYID8kzFs0w"),
+                 ("Apple Music", "https://music.apple.com/us/album/your-device-single/1571174090"),
+                 ("SoundCloud", "https://soundcloud.com/brick-blair/your-device")]),
+]
+
 CSS = """
 :root{color-scheme:dark;--bg:#0f0d0c;--bg2:#171412;--ink:#f1e9df;--mute:#b3a89b;--rule:#2c2622;--rust:#d0532c;--rust2:#e5693f}
 *{box-sizing:border-box;min-width:0}
@@ -72,6 +102,8 @@ h1{font-stretch:75%;font-weight:800;text-transform:uppercase;font-size:clamp(38p
 footer{border-top:1px solid var(--rule);padding:28px 0 40px;color:var(--mute);font-size:15px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px}
 footer a{text-decoration:none;border-bottom:1px solid var(--rule)}
+.credit a{text-decoration:none;border-bottom:1px solid var(--rust)}
+.lyric p{margin:0 0 1.4em;font-size:19px;line-height:1.6}
 @media (min-width:960px){.lyrics{margin-left:-120px;margin-right:-120px}}
 @media (max-width:640px){.cols{grid-template-columns:minmax(0,1fr)}.top nav{gap:14px}.home{font-size:22px}}
 """
@@ -122,6 +154,51 @@ PAGE = """<!DOCTYPE html>
 </html>
 """
 
+LYRIC_PAGE = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title} Lyrics | Brick Blair</title>
+<meta name="description" content="{dek}">
+<link rel="canonical" href="https://brickblair.com/{slug}/">
+<meta property="og:title" content="{title}: lyrics">
+<meta property="og:description" content="{dek}">
+<meta property="og:image" content="https://brickblair.com/img/{src}.jpg">
+<meta property="og:url" content="https://brickblair.com/{slug}/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<style>{css}</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="home" href="/">Brick Blair</a>
+  <nav aria-label="Site"><a href="/#songs">Songs</a><a href="/#writing">Writing</a><a href="/#list">Sign up</a></nav>
+</div></header>
+<main>
+<article>
+  <p class="kicker">Lyrics</p><h1>{title}</h1>
+  <p class="when credit">{credit} &middot; {year}</p>
+  {listen}<div class="lyric">
+{lyric}
+  </div>
+</article>
+<section class="next">
+  <div class="cta"><p>There's a finished album and an EP still to come out. Get each song by email the day it's released.</p><a href="/#list">Sign up</a></div>
+  <div class="more"><h2>More lyrics</h2><ul>{more}</ul></div>
+</section>
+</main>
+<footer><div class="wrap">
+  <span>&copy; 2026 Brick Blair</span>
+  <span><a href="https://open.spotify.com/artist/53nM47TLE6Is8HlyEZO4ru">Spotify</a> · <a href="https://music.apple.com/us/artist/brick-blair/1570843805">Apple Music</a> · <a href="https://www.instagram.com/brickblair/">Instagram</a></span>
+</div></footer>
+</body>
+</html>
+"""
+
 REDIRECT = """<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><title>Brick Blair</title>
 <link rel="canonical" href="https://brickblair.com/{to}">
@@ -162,8 +239,22 @@ def build():
     # the old lyrics address now points at the lyrics on the essay page
     d = ROOT / "on-the-zooms-lyrics-annotated"; d.mkdir(exist_ok=True)
     (d / "index.html").write_text(REDIRECT.format(to="on-the-zooms-essay/#lyrics"))
+    # lyrics pages
+    for s in SONGS:
+        text = (LYRICS_SRC / f"{s['src']}.md").read_text()
+        first = text.strip().splitlines()[0]
+        dek = f"Lyrics to {s['title']} by Brick Blair: “{first}”"
+        listen = '<div class="listen">' + "".join(f'<a href="{u}">Listen on {n}</a>' for n, u in s["listen"]) + "</div>\n  "
+        more = "".join(f'<li><a href="/{o["slug"]}/">{html.escape(o["title"])}</a></li>' for o in SONGS if o is not s)
+        more += '<li><a href="/on-the-zooms-essay/#lyrics">On the Zooms</a></li>'
+        out = LYRIC_PAGE.format(title=html.escape(s["title"]), dek=html.escape(dek), slug=s["slug"], src=s["src"],
+                                css=CSS, credit=s["credit"], year=s["year"], listen=listen,
+                                lyric=stanzas(text), more=more)
+        d = ROOT / s["slug"]; d.mkdir(exist_ok=True)
+        (d / "index.html").write_text(out)
     # sitemap so Google picks the pages up
-    urls = ["https://brickblair.com/"] + [f"https://brickblair.com/{e['slug']}/" for e in ESSAYS]
+    urls = (["https://brickblair.com/"] + [f"https://brickblair.com/{e['slug']}/" for e in ESSAYS]
+            + [f"https://brickblair.com/{s['slug']}/" for s in SONGS])
     (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                                      + "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n")
     print("built", [e["slug"] for e in ESSAYS])
