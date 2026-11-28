@@ -61,6 +61,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 footer a{text-decoration:none;border-bottom:1px solid var(--rule)}
 .credit a{text-decoration:none;border-bottom:1px solid var(--rust)}
 .lyric p{margin:0 0 1.4em;font-size:19px;line-height:1.6}
+.player{display:block;width:100%;margin:0 0 36px}
 @media (min-width:960px){.lyrics{margin-left:-120px;margin-right:-120px}}
 @media (max-width:640px){.cols{grid-template-columns:minmax(0,1fr)}.top nav{gap:14px}.home{font-size:22px}}
 </style>
@@ -74,7 +75,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--rule)}
 <article>
   <p class="kicker">Lyrics</p><h1>Anthem In Our Hearts</h1>
   <p class="when credit">Written by Brick Blair, <a href="https://www.instagram.com/mayalove1/">Maya Coppola</a> and <a href="https://www.midasroyal.com/">Midas Royal</a> &middot; 2022</p>
-  <div class="listen"><a href="https://www.midasroyal.com/portfolio-items/anthem-in-our-hearts/">Listen on midasroyal.com</a></div>
+  <audio class="player" controls preload="metadata" controlslist="nodownload" src="/audio/anthem-in-our-hearts.mp3" aria-label="Play Anthem In Our Hearts"></audio>
   <div class="lyric">
 <p>The first time you danced into the room with your lover was like a<br>
 Record spinning, spinning playing with my heart<br>

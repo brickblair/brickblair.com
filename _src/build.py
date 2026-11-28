@@ -19,12 +19,14 @@ ESSAYS = [
          dek="The story behind On the Zooms: a pandemic love affair, told in Zoom grids and COVID tests. With the lyrics in English and Portuguese.",
          listen=[("Spotify", "https://open.spotify.com/album/1Oe4D4e4wAFyAO3Yq0aVM0"),
                  ("Apple Music", "https://music.apple.com/us/album/on-the-zooms-single/1594350093"),
+                 ("SoundCloud", "https://soundcloud.com/brick-blair/on-the-zooms"),
                  ("YouTube", "https://youtu.be/LJVhJ7JicE4")]),
     dict(slug="two-dollar-coat-qa", title="Two Dollar Coat: Answers and Questions", when="March 2022",
          kicker="Two Dollar Coat: the story behind the song",
          dek="What the song is about, free coats, and nearly thirty takes.",
          listen=[("Spotify", "https://open.spotify.com/track/0xqbfcP4kkb3BoOeqOyNJ2"),
                  ("Apple Music", "https://music.apple.com/us/album/two-dollar-coat/1611238389?i=1611238390"),
+                 ("SoundCloud", "https://soundcloud.com/brick-blair/two-dollar-coat"),
                  ("YouTube", "https://youtu.be/6Fl8En8sthA")]),
 ]
 
@@ -39,17 +41,20 @@ SONGS = [
     dict(src="white-horse", slug="white-horse-lyrics", title="White Horse", year="2023",
          credit="Written by Brick Blair",
          listen=[("Spotify", "https://open.spotify.com/track/5kckr3vwyTCFsCz4fGupcM"),
-                 ("Apple Music", "https://music.apple.com/us/artist/brick-blair/1570843805")]),
+                 ("Apple Music", "https://music.apple.com/us/artist/brick-blair/1570843805"),
+                 ("SoundCloud", "https://soundcloud.com/brick-blair/white-horse")]),
     dict(src="anthem-in-our-hearts", slug="anthem-in-our-hearts-lyrics", title="Anthem In Our Hearts", year="2022",
          credit='Written by Brick Blair, <a href="https://www.instagram.com/mayalove1/">Maya Coppola</a> and <a href="https://www.midasroyal.com/">Midas Royal</a>',
-         listen=[("midasroyal.com", "https://www.midasroyal.com/portfolio-items/anthem-in-our-hearts/")]),
+         audio="/audio/anthem-in-our-hearts.mp3", listen=[]),
     dict(src="ball-of-gold", slug="ball-of-gold-lyrics", title="Ball of Gold", year="2022",
          credit="Written by Brick Blair",
-         listen=[("YouTube", "https://youtu.be/inNTdfsNJPg")]),
+         listen=[("SoundCloud", "https://soundcloud.com/brick-blair/ball-of-gold"),
+                 ("YouTube", "https://youtu.be/inNTdfsNJPg")]),
     dict(src="two-dollar-coat", slug="two-dollar-coat-lyrics", title="Two Dollar Coat", year="2022",
          credit="Written by Brick Blair",
          listen=[("Spotify", "https://open.spotify.com/track/0xqbfcP4kkb3BoOeqOyNJ2"),
                  ("Apple Music", "https://music.apple.com/us/album/two-dollar-coat/1611238389?i=1611238390"),
+                 ("SoundCloud", "https://soundcloud.com/brick-blair/two-dollar-coat"),
                  ("YouTube", "https://youtu.be/6Fl8En8sthA")]),
     dict(src="your-device", slug="your-device-song-lyrics", title="Your Device", year="2021",
          credit="Written by Brick Blair",
@@ -104,6 +109,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 footer a{text-decoration:none;border-bottom:1px solid var(--rule)}
 .credit a{text-decoration:none;border-bottom:1px solid var(--rust)}
 .lyric p{margin:0 0 1.4em;font-size:19px;line-height:1.6}
+.player{display:block;width:100%;margin:0 0 36px}
 @media (min-width:960px){.lyrics{margin-left:-120px;margin-right:-120px}}
 @media (max-width:640px){.cols{grid-template-columns:minmax(0,1fr)}.top nav{gap:14px}.home{font-size:22px}}
 """
@@ -244,7 +250,10 @@ def build():
         text = (LYRICS_SRC / f"{s['src']}.md").read_text()
         first = text.strip().splitlines()[0]
         dek = f"Lyrics to {s['title']} by Brick Blair: “{first}”"
-        listen = '<div class="listen">' + "".join(f'<a href="{u}">Listen on {n}</a>' for n, u in s["listen"]) + "</div>\n  "
+        listen = '<div class="listen">' + "".join(f'<a href="{u}">Listen on {n}</a>' for n, u in s["listen"]) + "</div>\n  " if s["listen"] else ""
+        if s.get("audio"):
+            listen = (f'<audio class="player" controls preload="metadata" controlslist="nodownload" src="{s["audio"]}" '
+                      f'aria-label="Play {html.escape(s["title"])}"></audio>\n  ') + listen
         more = "".join(f'<li><a href="/{o["slug"]}/">{html.escape(o["title"])}</a></li>' for o in SONGS if o is not s)
         more += '<li><a href="/on-the-zooms-essay/#lyrics">On the Zooms</a></li>'
         out = LYRIC_PAGE.format(title=html.escape(s["title"]), dek=html.escape(dek), slug=s["slug"], src=s["src"],
